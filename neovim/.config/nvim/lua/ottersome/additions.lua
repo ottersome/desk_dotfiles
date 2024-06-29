@@ -1,0 +1,4 @@
+-- vim.api.nvim_create_user_command("InsertTime", function()
+-- 	local time = os.date("%Y-%m-%d %H:%M:%S")
+-- 	vim.api.nvim_put({ time }, "c", true, true)
+-- end, {})

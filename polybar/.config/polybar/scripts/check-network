@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+disconnect1="/"
+disconnect2="\\"
+wconnected=""
+econnected=""
+
+
+default_route=$(ip route | grep '^default')
+# Extract the interface from the default route
+interface=$(echo $default_route | awk '{print $5}')
+# Determine the icon/glyph based on the interface
+case $interface in
+    eth*|en*)
+        icon="🖧"  # Ethernet icon
+        ;;
+    wlan*|wl*)
+        icon="📶"  # Wi-Fi icon
+        ;;
+    tun*)
+        icon="🔒"  # VPN/Tunnel icon
+        ;;
+    *)
+        icon="❓"  # Unknown interface icon
+        ;;
+esac
+
+while true; do
+    if ping -c 1 duckduckgo.com >/dev/null 2>&1 || ping -c 1 archlinux.org >/dev/null 2>&1; then
+        [[ $id == e* ]] && echo "$econnected" || echo "$wconnected"
+        sleep 25
+    else
+        echo "$disconnect1"  # /
+        sleep 0.6
+        echo "$disconnect2"  # \
+        sleep 0.6
+    fi
+done
