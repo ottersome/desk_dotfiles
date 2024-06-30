@@ -101,7 +101,7 @@ if [ -n "$current" ] && [ -n "$forecast" ]; then
        sunriseset="󰖜 $(timestamp_to_HHmm "$((sun_rise))")"
    elif [ "$sun_set" -gt "$now" ]; then
        # daytime=" $(get_duration "$((sun_set-now))")"
-       sunriseset="󰖛 $(timestamp_to_HHmm "$((sun_rise))")"
+       sunriseset="󰖛 $(timestamp_to_HHmm "$((sun_set))")"
    else
        # daytime=" $(get_duration "$((sun_rise-now))")"
        sunriseset="󰖜 $(timestamp_to_HHmm "$((sun_rise))")"
