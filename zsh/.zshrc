@@ -61,7 +61,6 @@ ZSH_THEME="miloshadzic"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-HIST_STAMPS="%g-%m-%d"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -72,11 +71,28 @@ HIST_STAMPS="%g-%m-%d"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git zsh-autosuggestions)
-plugins=(zsh-autosuggestions ssh-agent poetry)
-
+plugins=(zsh-completions zsh-autosuggestions ssh-agent poetry fzf-tab git)
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# Plugin Configuration
+autoload -U compinit && compinit
+
+# Better History
+HIST_STAMPS="%g-%m-%d"
+HIST_SIZE=10000
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+
+
+### User configuration
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -lh $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -lh $realpath'
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+
+zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa2 id_github
+
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -127,14 +143,14 @@ if [ -f '/home/ottersome/tmp/google-cloud-sdk/completion.zsh.inc' ]; then . '/ho
 if [ "$TMUX" = "" ]; then tmux; fi
 
 # ssh agent utility
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-  ssh-agent > ~/.ssh-agent-env
-fi
-
-# Load ssh-agent environment variables
-if [[ -f ~/.ssh-agent-env ]]; then
-  source ~/.ssh-agent-env > /dev/null
-fi
+# if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+#   ssh-agent > ~/.ssh-agent-env
+# fi
+#
+# # Load ssh-agent environment variables
+# if [[ -f ~/.ssh-agent-env ]]; then
+#   source ~/.ssh-agent-env > /dev/null
+# fi
 
 
 # Shell-GPT integration ZSH v0.2
@@ -173,5 +189,7 @@ alias wttr="curl wttr.in/hsinchu"
 export STOW_DIR="~/dotfiles/"
 
 
+alias l="eza -lh --group-directories-first"
+alias lt="eza -T -L 2 "
 # source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #
