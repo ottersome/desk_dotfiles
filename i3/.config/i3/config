@@ -255,13 +255,10 @@ for_window [class="URxvt"] border pixel 5
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Qalculate-gtk"] floating enable
 
-# Some nice titles
 
 #smart_gaps on
 gaps inner 40
 gaps outer 60
-
-
 
 # class                 border  backgr. text      indicator         child_border
 client.focused          $ctxf   $bgf    $textf    $indf            $ctxf
@@ -278,7 +275,7 @@ exec_always --no-startup-id wal -s -t -i /home/ottersome/onedrive/Wallpapers/wav
 #exec_always --no-startup-id feh --bg-scale ~/onedrive/Wallpapers/waves.png
 exec_always --no-startup-id fcitx5 -d
 
-bindsym $mod+p exec passMenu
+bindsym $mod+p exec --no-startup-id rofi-rbw
 bindsym $mod+s exec spotify
 bindsym $mod+q exec qalculate-gtk
 
