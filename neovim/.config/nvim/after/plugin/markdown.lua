@@ -94,7 +94,7 @@ local function open_file()
 	local cur_md_file_path = vim.fn.expand("%:p")
 	local abs_path = vim.fn.fnamemodify(cur_md_file_path, ":h")
 	local final_path = abs_path .. "/" .. file_path
-	local open_cmd = string.format("xdg-open %s", final_path)
+	local open_cmd = string.format("xdg-open %s & disown", final_path)
 	os.execute(open_cmd)
 end
 

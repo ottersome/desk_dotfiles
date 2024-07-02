@@ -78,7 +78,7 @@ return {
 				{ name = "luasnip" }, -- snippets
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
-				{ name = "rg" }, -- for ripgreping across the repo
+				-- { name = "rg" }, -- for ripgreping across the repo
 				--TODO: add cmp-latex-symbols
 			}),
 			-- configure lspkind for vs-code like pictograms in completion menu
