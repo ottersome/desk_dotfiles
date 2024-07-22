@@ -80,13 +80,30 @@ local function paste_image_from_clipboard()
 	-- Ensure to handle spaces if exists in img_path so that command does not fail
 	img_path = vim.fn.fnameescape(img_path)
 	-- Use xclip or xsel to save the clipboard image to the file
-	local save_cmd = string.format("xclip -selection clipboard -t image/png -o > %s", img_path)
-	os.execute(save_cmd)
-	-- Insert the markdown image link at the current cursor position
-	-- Conform to obsidan root path
-	-- img_path = string.gsub(img_path, vault_root, "")
-	local img_link = string.format("![%s](%s)", img_name, "./assets/" .. img_name)
-	vim.api.nvim_put({ img_link }, "c", true, true)
+	-- Check if it is mac or linux
+	local pasted_path = require("obsidian.img_paste").paste_img({
+		fname = img_name,
+		default_dir = img_folder,
+		default_name = img_name,
+		should_confirm = true,
+	})
+	-- -- Check if there is even an image in the clipboard
+	-- local clipboard_type = vim.fn.system("xclip -selection clipboard  -o -t TARGETS")
+	-- if not clipboard_type:find("image/png") then
+	-- 	print("No image in clipboard")
+	-- 	return
+	-- end
+	-- local save_cmd = string.format("xclip -selection clipboard -t image/png -o > %s", img_path)
+	-- os.execute(save_cmd)
+	-- -- Insert the markdown image link at the current cursor position
+	-- -- Conform to obsidan root path
+	-- -- img_path = string.gsub(img_path, vault_root, "")
+	-- If the image was pasted successfully, insert the markdown image link at the current cursor position
+
+	if pasted_path ~= nil then
+		local img_link = string.format("![%s](%s)", img_name, "./assets/" .. img_name)
+		vim.api.nvim_put({ img_link }, "c", true, true)
+	end
 end
 local function open_file()
 	-- Will use XDG_OPEN to open files under cursor. Files will be in a typical markdown link format
