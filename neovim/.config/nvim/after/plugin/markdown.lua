@@ -99,9 +99,9 @@ local function open_file()
 end
 
 local nabla = require("nabla")
-vim.keymap.set("n", "<leader>pp", ':lua require("nabla").popup()<CR>', { desc = "Nabla: Open popup" })
-vim.keymap.set("n", "<leader>po", nabla.enable_virt, { desc = "Nabla: Virt Enable" })
-vim.keymap.set("n", "<leader>pi", nabla.disable_virt, { desc = "Nabla: Virt Diable" })
+vim.keymap.set("n", "<leader>np", ':lua require("nabla").popup()<CR>', { desc = "Nabla: Open popup" })
+vim.keymap.set("n", "<leader>no", nabla.enable_virt, { desc = "Nabla: Virt Enable" })
+vim.keymap.set("n", "<leader>ni", nabla.disable_virt, { desc = "Nabla: Virt Diable" })
 
 -- Create a conditional where the code below will only execute if under some child of the  `~/Document` directory
 -- (for using obsidian)
@@ -113,6 +113,7 @@ vim.opt_local.foldexpr = "v:lua.MarkdownFoldExpr(v:lnum)"
 -- Activate only when editing Obsidian notes
 if string.find(current_file_dir, documents_dir, 1, true) == 1 then
 	-- Options
+	vim.cmd([[colorscheme kanagawa-wave]])
 	--- Obsidian Asks for this
 	vim.opt.conceallevel = 1
 	vim.opt.spelllang = { "en", "es" }

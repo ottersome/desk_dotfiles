@@ -8,12 +8,6 @@ return {
 		--end,
 	},
 	{
-		"frenzyexists/aquarium-vim",
-		config = function()
-			-- vim.cmd([[colorscheme aquarium]])
-		end,
-	},
-	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 	},
@@ -30,9 +24,15 @@ return {
 		lazy = false,
 		priority = 1000,
 		opts = {},
-		config = function()
-			vim.cmd([[colorscheme catppuccin-mocha]])
-		end,
 	},
 	{ "rose-pine/neovim", name = "rose-pine" },
+	{
+		"AlessandroYorba/Alduin",
+		name = "alduin",
+		config = function()
+			vim.g.alduin_Shout_Dragon_Aspect = true
+			vim.cmd([[colorscheme alduin]])
+		end,
+	},
+	-- { "jdsimcoe/abstract.vim" },
 }

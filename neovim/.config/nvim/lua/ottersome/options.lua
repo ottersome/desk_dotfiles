@@ -12,6 +12,8 @@ opt.number = true
 -- Fill Character
 vim.opt.fillchars:append({ diff = "╱" })
 
+-- Font
+vim.opt.guifont = "Victor Mono:h14"
 -- Spaces
 opt.tabstop = 2
 opt.shiftwidth = 2
@@ -52,6 +54,8 @@ opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or 
 -- split windows
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
+
+opt.scrolloff = 12
 
 -- turn off swapfile
 --opt.swapfile = false

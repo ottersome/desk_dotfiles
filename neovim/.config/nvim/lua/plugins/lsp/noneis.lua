@@ -15,6 +15,7 @@ return {
 		mason_null_ls.setup({
 			ensure_installed = {
 				"prettier", -- prettier formatter
+				"flake8",
 				"stylua", -- lua formatter
 				"black", -- python formatter
 				"bibtex_tidy", -- python formatter

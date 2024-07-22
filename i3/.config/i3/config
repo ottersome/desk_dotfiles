@@ -138,6 +138,15 @@ bindsym $mod+minus scratchpad show
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+# For marks
+bindsym $mod+n exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+bindsym $mod+m exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+
+# For Swaping
+bindsym $mod+s exec i3-input -F 'swap container with mark %s' -l 1 -P 'Swap with: '
+
+
+
 # focus the parent container
 bindsym $mod+a focus parent
 
@@ -227,6 +236,7 @@ bindsym $mod+F11 exec mpc toggle
 #bindsym XF86AudioMute exec amixer -q set Master toggle
 
 bindsym $mod+r exec "rofi -show file-browser-extended -file-browser-depth 4  -file-browser-dir ~/onedrive/ResearchPapers -file-browser-cmd sioyek  -theme-str 'window {width: 30%;}'"
+bindsym $mod+g exec "rofi -show file-browser-extended -file-browser-depth 3  -file-browser-dir ~/onedrive/Books/Literature -file-browser-cmd zathura -theme-str 'window {width: 30%;}'"
 bindsym $mod+$alt+r exec ~/.local/bin/download_transform
 bindsym $mod+t exec "rofi -show file-browser-extended -file-browser-depth 3  -file-browser-dir ~/onedrive/Books/Academic -file-browser-cmd sioyek  -theme-str 'window {width: 30%;}'"
 #bindsym $mod+r mode "resize"
@@ -276,7 +286,7 @@ exec_always --no-startup-id wal -s -t -i /home/ottersome/onedrive/Wallpapers/wav
 exec_always --no-startup-id fcitx5 -d
 
 bindsym $mod+p exec --no-startup-id rofi-rbw
-bindsym $mod+s exec spotify
+# bindsym $mod+ exec spotify
 bindsym $mod+q exec qalculate-gtk
 
 bindsym $mod+Shift+m exec urxvt -hold -title 'floaty' -e changeWallpaper 

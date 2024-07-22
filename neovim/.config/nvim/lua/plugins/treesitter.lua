@@ -5,7 +5,7 @@ return {
 		build = ":TSUpdate",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
-			"windwp/nvim-ts-autotag",
+			-- "windwp/nvim-ts-autotag",
 		},
 		config = function()
 			-- import nvim-treesitter plugin
@@ -30,6 +30,7 @@ return {
 					"java",
 					"tsx",
 					"yaml",
+					"go",
 					"html",
 					"css",
 					"prisma",
@@ -48,10 +49,11 @@ return {
 				incremental_selection = {
 					enable = true,
 					keymaps = {
-						init_selection = "[x",
-						node_incremental = "[x",
-						scope_incremental = false,
-						node_decremental = "<bs>",
+						init_selection = "]x",
+						node_incremental = "]x",
+						node_decremental = "[x",
+						scope_incremental = "]z",
+						-- scope_decremental = "<bs>",
 					},
 				},
 				-- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
@@ -60,6 +62,34 @@ return {
 					enable_autocmd = false,
 				},
 			})
+			-- Tree-sitter based folding
+			require("nvim-treesitter.configs").setup({
+				-- One of "all", "comment", "none"
+				fold_by_default = "none",
+				-- Whether to fold comments by default
+				fold_comments = true,
+				-- Whether to fold semantic (new lines) by default
+				fold_semantic = true,
+				-- Whether to fold text objects (new lines) by default
+				fold_text_objects = true,
+				-- Whether to fold the indent of the cursor line by default
+				fold_indent = true,
+				-- Whether to fold treesitter nodes by default
+				fold_nodes = true,
+				-- Whether to fold code block by default
+				fold_code_blocks = true,
+				-- Whether to fold yaml nodes by default
+				fold_yaml = true,
+				-- Whether to fold HTML nodes by default
+				fold_html = true,
+				-- Whether to fold markdown nodes by default
+				fold_markdown = true,
+			})
+			-- Set fold method to "expr" for treesitter based folding
+			vim.cmd([[set foldmethod=expr]])
+			vim.cmd([[set foldexpr=nvim_treesitter#foldexpr()]])
+			-- vim.g.foldmethod = "expr"
+			-- vim.g.foldexpr = "nvim_treesitter#foldexpr()"
 		end,
 	},
 	{
@@ -84,7 +114,9 @@ return {
 							--
 							-- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
 							-- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
-							["]q"] = { query = "@scope", query_group = "locals", desc = "TSTO: Next scope" },
+							--
+							-- Seems like it isnt working
+							["]b"] = { query = "@block.inner", desc = "TSTO: Next block" },
 							["]z"] = { query = "@fold", query_group = "folds", desc = "TSTO: Next fold" },
 						},
 						goto_next_end = {
@@ -94,7 +126,8 @@ return {
 						goto_previous_start = {
 							["[f"] = { query = "@function.outer", desc = "TSTO: P/ func out start" },
 							["[w"] = { query = "@class.outer", desc = "TSTO: P/ class out start" },
-							["[q"] = { query = "@scope", query_group = "locals", desc = "TSTO: Next scope" },
+							-- Seems like it isnt working
+							["[b"] = { query = "@block.inner", desc = "TSTO: Previous block" },
 						},
 						goto_previous_end = {
 							["[F"] = { query = "@function.outer", desc = "TSTO: P/ func out end" },
@@ -125,7 +158,14 @@ return {
 							-- nvim_buf_set_keymap) which plugins like which-key display
 							["ic"] = { query = "@class.inner", desc = "TSTO: Select inner part of a class region" },
 							-- You can also use captures from other query groups like `locals.scm`
-							["as"] = { query = "@scope", query_group = "locals", desc = "TSTO: Select language scope" },
+							["ab"] = {
+								query = "@block.inner",
+								desc = "TSTO: Select inner part of a block region",
+							},
+							["aB"] = {
+								query = "@block.outer",
+								desc = "TSTO: Select inner part of a block region",
+							},
 						},
 						-- You can choose the select mode (default is charwise 'v')
 						--

@@ -3,7 +3,7 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"kevinhwang91/promise-async", -- Dependency form nvim-ufo here
-		"kevinhwang91/nvim-ufo", -- Not much a dependency but something we want configed in the same place
+		-- "kevinhwang91/nvim-ufo", -- Not much a dependency but something we want configed in the same place
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
@@ -13,14 +13,15 @@ return {
 		-- import lspconfig plugin
 		local lspconfig = require("lspconfig")
 
+		-- TOREM: Probably ufo
 		-- Setup up UFO (for folding)
-		vim.o.foldcolumn = "1" -- '0' is not bad
-		vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-		vim.o.foldlevelstart = 99
-		vim.o.foldenable = false
-		vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-		vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-		require("ufo").setup()
+		-- vim.o.foldcolumn = "1" -- '0' is not bad
+		-- vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+		-- vim.o.foldlevelstart = 99
+		-- vim.o.foldenable = false
+		-- vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+		-- vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+		-- require("ufo").setup()
 
 		--Set lsp log level to info
 
@@ -103,7 +104,6 @@ return {
 		-- vim.lsp.set_log_level("debug")
 		vim.lsp.set_log_level("WARN")
 
-		-- configure python server
 		lspconfig["pyright"].setup({
 			cmd = { "pyright-langserver", "--stdio" },
 			capabilities = capabilities,

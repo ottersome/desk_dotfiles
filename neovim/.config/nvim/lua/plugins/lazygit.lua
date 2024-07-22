@@ -1,5 +1,6 @@
 -- nvim v0.8.0
 return {
+	event = "VeryLazy",
 	"kdheepak/lazygit.nvim",
 	-- optional for floating window border decoration
 	dependencies = {

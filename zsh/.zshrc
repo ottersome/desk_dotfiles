@@ -9,9 +9,9 @@ export ZSH="/home/ottersome/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="miloshadzic"
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="agnoster"
+# ZSH_THEME="miloshadzic"
+ZSH_THEME="robbyrussell"
+# ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,11 +71,13 @@ ZSH_THEME="miloshadzic"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git zsh-autosuggestions)
+### BEGIN: PLUGMAN
 plugins=(zsh-completions zsh-autosuggestions ssh-agent poetry fzf-tab git)
 source $ZSH/oh-my-zsh.sh
 
 # Plugin Configuration
 autoload -U compinit && compinit
+### END: PLUGMAN 
 
 # Better History
 HIST_STAMPS="%g-%m-%d"
@@ -91,7 +93,8 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -lh $realpath'
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa2 id_github
+zstyle :omz:plugins:ssh-agent identities id_rsa 
+zstyle :omz:plugins:ssh-agent lazy yes
 
 
 # export MANPATH="/usr/local/man:$MANPATH"

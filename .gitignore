@@ -1,1 +1,11 @@
 *__pycache__/
+backup/
+undo/
+ranger/.config/ranger/bookmarks
+ranger/.config/ranger/history
+ranger/.config/ranger/tagged
+sioyek/.config/sioyek/shared.db
+sioyek/.config/sioyek/old_shared.db
+zsh/.oh-my-zsh
+neovim/.config/nvim/spell/en.utf-8.add
+neovim/.config/nvim/spell/en.utf-8.add.spl

@@ -2,6 +2,7 @@ local sql_ft = { "sql", "mysql", "plsql" }
 
 return {
 	-- "kristijanhusak/vim-dadbod-completion",
+	event = "VeryLazy",
 	"tpope/vim-dadbod",
 	"kristijanhusak/vim-dadbod-ui",
 	-- config = function()

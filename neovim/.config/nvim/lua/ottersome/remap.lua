@@ -22,13 +22,17 @@ keymap.set("n", "<leader>Q", ":bd! <CR>", { desc = "NVim: Close Buffer" })
 keymap.set({ "n", "i" }, "<C-P>", '<C-R><C-P>"', { desc = "Trying to copy into aligned" })
 
 -- Switching rows
-vim.api.nvim_set_keymap("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-K>", ":m .-2<CR>==", { noremap = true, silent = true })
 -- Move line down
-vim.api.nvim_set_keymap("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-J>", ":m .+1<CR>==", { noremap = true, silent = true })
 -- Move selected lines up
-vim.api.nvim_set_keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<A-K>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 -- Move selected lines down
-vim.api.nvim_set_keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<A-J>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+
+-- To easily escape terminal mode
+vim.api.nvim_set_keymap("t", "<C-q>", "<C-\\><C-n>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<C-w>", "<C-\\><C-n><C-w>", { noremap = true, silent = true })
 
 -- Vimspector
 --keymap.set("n", "<leader>dd", ":call vimspector#Launch()<CR>", { desc = "Launch VimSpector" })
@@ -42,5 +46,8 @@ vim.api.nvim_set_keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, sile
 
 -- Vimspector Replaced with vim-dap
 
---Lazy Clipboard Copy
+--Lazy Clipboard Copyy
 keymap.set("v", "<leader>y", '"+y', { silent = false })
+keymap.set("n", "<leader>p", '"+p', { silent = false })
+keymap.set("i", "<C-v>", '<C-R><C-P>"', { silent = false })
+keymap.set("i", "<C-g>", "<C-R><C-P>+", { silent = false })
