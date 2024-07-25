@@ -10,13 +10,13 @@ return {
 		end,
 	},
 	-- For closing pairs
-	{
-		"echasnovski/mini.pairs",
-		version = "*",
-		config = function()
-			require("mini.pairs").setup()
-		end,
-	},
+	-- {
+	-- 	"echasnovski/mini.pairs",
+	-- 	version = "*",
+	-- 	config = function()
+	-- 		require("mini.pairs").setup()
+	-- 	end,
+	-- },
 	-- For getting colors to show. Useful but not always
 	-- {
 	--   'norcalli/nvim-colorizer.lua',

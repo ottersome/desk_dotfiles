@@ -5,19 +5,26 @@ local function dewrap()
 	-- Basically just replace every stopping point ".". With  Stopping point followed by break line
 end
 
+local function scmd(cmd)
+	return function()
+		vim.api.nvim_command(cmd)
+	end
+end
+
 local keymap = vim.keymap
 -- My lovelies:
-keymap.set("n", "<leader>s", ":update<CR>", { desc = "Update file" })
-keymap.set("n", "<leader>v", ":buffer#<CR>", { desc = "Go to last buffer" })
+-- keymap.set("n", "<leader>s", ":silent update<CR>", { desc = "Update file" })
+keymap.set("n", "<leader>s", scmd("update"), { desc = "Update file" })
+keymap.set("n", "<leader>v", scmd("buffer#"), { desc = "Go to last buffer" })
 -- Replaced by bufferline:
 --keymap.set("n", "<leader>b", ":buffers<CR>:buffer<Space>", { desc = "Show All Buffers" })
-keymap.set("n", "<leader>tz", ":term <CR>", { desc = "Open Terminal" })
-keymap.set("n", "<leader>mm", ":make <CR>", { desc = "Make" })
-keymap.set("n", "<leader>mc", ":cope <CR>", { desc = "Quickfix List" })
+keymap.set("n", "<leader>tz", scmd("term"), { desc = "Open Terminal" })
+keymap.set("n", "<leader>mm", scmd("make"), { desc = "Make" })
+keymap.set("n", "<leader>mc", scmd("cope"), { desc = "Quickfix List" })
 
 -- "Q" prefix will usually denote quit stuff
-keymap.set("n", "<leader>q", ":bd <CR>", { desc = "NVim: Close Buffer" })
-keymap.set("n", "<leader>Q", ":bd! <CR>", { desc = "NVim: Close Buffer" })
+keymap.set("n", "<leader>q", scmd("bd"), { desc = "NVim: Close Buffer" })
+keymap.set("n", "<leader>Q", scmd("bd!"), { desc = "NVim: Close Buffer" })
 
 keymap.set({ "n", "i" }, "<C-P>", '<C-R><C-P>"', { desc = "Trying to copy into aligned" })
 

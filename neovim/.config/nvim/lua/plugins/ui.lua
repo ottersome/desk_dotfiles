@@ -6,6 +6,10 @@ return {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
 		},
+		config = function()
+			local noice = require("noice")
+			noice.setup({})
+		end,
 	},
 	{
 		"hedyhli/outline.nvim",
@@ -205,6 +209,7 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
+		event = "VeryLazy",
 		opts = {},
 		setup = function()
 			require("ibl").setup({})
