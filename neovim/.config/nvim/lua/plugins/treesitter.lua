@@ -1,3 +1,10 @@
+
+local function scmd(cmd)
+	return function()
+		vim.api.nvim_command(cmd)
+	end
+end
+
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -24,27 +31,29 @@ return {
 				},
 				-- ensure these language parsers are installed
 				ensure_installed = {
-					"json",
-					"javascript",
-					"typescript",
-					"java",
-					"tsx",
-					"yaml",
-					"go",
-					"html",
-					"css",
-					"prisma",
-					"markdown",
-					"markdown_inline",
-					"svelte",
-					"graphql",
-					"python",
 					"bash",
-					"lua",
-					"vim",
+					"css",
 					"dockerfile",
 					"gitignore",
+					"go",
+					"graphql",
+					"html",
+					"java",
+					"javascript",
+					"json",
+					"lua",
+					"markdown",
+					"markdown_inline",
+					"prisma",
+					"python",
 					"query",
+					"svelte",
+					"tsx",
+					"typescript",
+					"vim",
+					"yaml",
+          "dockerfile",
+          "nix",
 				},
 				incremental_selection = {
 					enable = true,
@@ -88,6 +97,7 @@ return {
 			-- Set fold method to "expr" for treesitter based folding
 			vim.cmd([[set foldmethod=expr]])
 			vim.cmd([[set foldexpr=nvim_treesitter#foldexpr()]])
+      -- vim.keymap.set("n","<leader>Ze", scmd("set foldexpr=nvim_treesitter#foldexpr()")
 			-- vim.g.foldmethod = "expr"
 			-- vim.g.foldexpr = "nvim_treesitter#foldexpr()"
 		end,

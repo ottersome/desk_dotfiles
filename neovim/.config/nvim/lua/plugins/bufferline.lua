@@ -14,6 +14,11 @@ return {
 		--
 		-- set keymaps
 		local keymap = vim.keymap -- for conciseness
+		local function scmd(cmd)
+			return function()
+				vim.api.nvim_command(cmd)
+			end
+		end
 
 		keymap.set("n", "<leader>b", ":BufferLinePick<CR>", { desc = "Use BufferLine plugin to pick buffer." }) -- toggle file explorer
 		keymap.set(
@@ -22,9 +27,9 @@ return {
 			":BufferLinePickClose<CR>",
 			{ desc = "Use BufferLine plugin to pick buffer to close." }
 		) -- toggle file explorer
-		keymap.set("n", "<leader>h", ":BufferLineCyclePrev<CR>", { desc = "Bufferline: Go to left tab." }) -- toggle file explorer
-		keymap.set("n", "<leader>l", ":BufferLineCycleNext<CR>", { desc = "Bufferline: Go to right tab." }) -- toggle file explorer
-		keymap.set("n", "<C-h>", ":BufferLineMovePrev<CR>", { desc = "Bufferline: Move tab to the left." }) -- toggle file explorer
-		keymap.set("n", "<C-l>", ":BufferLineMoveNext<CR>", { desc = "Bufferline: Move tab to the right." }) -- toggle file explorer
+		keymap.set("n", "<leader>h",scmd("BufferLineCyclePrev"), { desc = "Bufferline: Go to left tab." }) -- toggle file explorer
+		keymap.set("n", "<leader>l",scmd("BufferLineCycleNext"), { desc = "Bufferline: Go to right tab." }) -- toggle file explorer
+		keymap.set("n", "<C-h>", scmd("BufferLineMovePrev"), { desc = "Bufferline: Move tab to the left." }) -- toggle file explorer
+		keymap.set("n", "<C-l>", scmd("BufferLineMoveNext"), { desc = "Bufferline: Move tab to the right." }) -- toggle file explorer
 	end,
 }

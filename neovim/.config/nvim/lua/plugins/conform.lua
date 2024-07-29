@@ -23,11 +23,11 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 			},
-			format_on_save = {
-				lsp_fallback = true,
-				async = false,
-				timeout_ms = 1000,
-			},
+			-- format_on_save = {
+			-- 	lsp_fallback = true,
+			-- 	async = false,
+			-- 	timeout_ms = 1000,
+			-- },
 			formatters = {
 				uncrustify = {
 					env = {
@@ -37,7 +37,7 @@ return {
 			},
 		})
 
-		vim.keymap.set({ "n", "v" }, "<leader>cf", function()
+		vim.keymap.set({ "n", "v" }, "<leader>z", function()
 			conform.format({
 				lsp_fallback = true,
 				async = true,
